@@ -184,13 +184,14 @@ public class Graphing : MonoBehaviour
             }
         }
         stockValue = value[9];
-        
+
     }
 
     void CreatePointConnection (Vector2 PointA, Vector2 PointB)
     {
         GameObject gameObject = new GameObject("PointConnection", typeof(Image));
         gameObject.transform.SetParent(Canvas, false);
+        gameObject.transform.SetSiblingIndex(6);
         gameObject.tag = "Player";
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         Vector2 dir = (PointB - PointA).normalized;

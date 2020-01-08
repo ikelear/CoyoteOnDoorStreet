@@ -10,16 +10,19 @@ public class GameController : MonoBehaviour
 
     GameObject StockPrice;
     GameObject BankBalance;
+    GameObject BuyPanel;
 
-    private void Awake()
+    private void Start()
     {
         StockPrice = GameObject.Find("StockPriceValue");
-        BankBalance = GameObject.Find("bankBalanceValue");
+        BankBalance = GameObject.Find("BankBalanceValue");
+        BuyPanel = GameObject.Find("BuyPanel");
 
 
         BankBalance.GetComponent<Text>().text = ("$") + bank.ToString();
 
-        Debug.Log("HI");
+        BuyPanel.SetActive(false);
+        
 
     }
 
@@ -29,4 +32,16 @@ public class GameController : MonoBehaviour
 
         StockPrice.GetComponent<Text>().text = stockPrice.ToString();
     }
+
+    public void OpenBuyPanel()
+    {
+        BuyPanel.SetActive(true);
+    }
+
+    public void CloseBuyPanel()
+    {
+        BuyPanel.SetActive(false);
+    }
+
+    
 }
