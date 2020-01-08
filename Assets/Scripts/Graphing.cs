@@ -16,6 +16,9 @@ public class Graphing : MonoBehaviour
     bool CreatedLabels = false;
     RectTransform Canvas;
     public float stockValue;
+    int frameCount = 30;
+    int frame = 0;
+    bool graphOn = true;
 
     GameObject tooltipGameObject;
 
@@ -149,7 +152,32 @@ public class Graphing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("p") == true)
+        if (graphOn == true)
+        {
+            frame++;
+        }
+        if (frame == frameCount/2 || frame == frameCount )
+        {
+            DestroyPointConnections();
+            for (int i = 0; i < value.Count; i++)
+            {
+                if (i > 0)
+                {
+                    value[i - 1] = value[i];
+                }
+            }
+            float newValue = Random.Range(1f, 10f);
+            value[value.Count - 1] = newValue;
+
+            max = FindMax(max);
+            GraphingPoints(max);
+            CreateYAxisLabels();
+            if (frame == frameCount)
+            {
+                frame = 0;
+            }
+        }
+        /*if (Input.GetKeyDown("p") == true)
         {
             DestroyPointConnections();
             for (int i = 0; i < value.Count; i++)
@@ -165,7 +193,7 @@ public class Graphing : MonoBehaviour
             max = FindMax(max);
             GraphingPoints(max);
             CreateYAxisLabels();
-        }
+        }/*/
 
         
     }
@@ -288,6 +316,16 @@ public class Graphing : MonoBehaviour
     void HideToolTip()
     {
         tooltipGameObject.SetActive(false);
+    }
+
+    public void GraphOff()
+    {
+        graphOn = false;
+    }
+
+    public void GraphOn()
+    {
+        graphOn = true;
     }
 
 
