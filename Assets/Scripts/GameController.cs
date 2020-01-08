@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 
         BankBalance.GetComponent<Text>().text = ("$") + bank.ToString();
 
-
+        Debug.Log("HI");
 
     }
 
