@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     GameObject StockOwnedValue;
     GameObject NotEnoughStocks;
     GameObject NotEnoughMoney;
+    GameObject stockOwnedValue;
 
     public InputField NumberOfStocks;
 
@@ -28,10 +29,11 @@ public class GameController : MonoBehaviour
         StockOwnedValue = GameObject.Find("StockOwnedValue");
         NotEnoughStocks = GameObject.Find("NotEnoughStocks");
         NotEnoughMoney = GameObject.Find("NotEnoughMoney");
+        stockOwnedValue = GameObject.Find("stocksOwnedValue");
 
 
         BankBalance.GetComponent<Text>().text = ("$") + bank.ToString();
-
+        stockOwnedValue.GetComponent<Text>().text = stocksOwned.ToString();
 
 
         BuyPanel.SetActive(false);
@@ -76,6 +78,7 @@ public class GameController : MonoBehaviour
         stocksOwned = stocksOwned + int.Parse(NumberOfStocks.text);
         NumberOfStocks.text = 0f.ToString();
         StockOwnedValue.GetComponent<Text>().text = stocksOwned.ToString();
+        stockOwnedValue.GetComponent<Text>().text = stocksOwned.ToString();
     }
 
     public void StocksSold()
@@ -91,6 +94,7 @@ public class GameController : MonoBehaviour
         stocksOwned = stocksOwned - int.Parse(NumberOfStocks.text);
         NumberOfStocks.text = 0f.ToString();
         StockOwnedValue.GetComponent<Text>().text = stocksOwned.ToString();
+        stockOwnedValue.GetComponent<Text>().text = stockOwnedValue.ToString();
     }
 
     public void TurnOffNotEnoughStocks()
